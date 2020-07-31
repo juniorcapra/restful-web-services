@@ -22,32 +22,31 @@ public class UserResource {
 
     @GetMapping("/users")
     public List<User> retrieveAllUsers() {
+
         return service.findAll();
     }
 
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id) {
         User user = service.findOne(id);
-        return user;
-    }
 
-//        if(user==null)
-//            throw new UserNotFoundException("id-"+ id);
+        if(user==null)
+            throw new UserNotFoundException("id-"+ id);
 
-//
-//        //"all-users", SERVER_PATH + "/users"
-//        //retrieveAllUsers
+
+        //"all-users", SERVER_PATH + "/users"
+        //retrieveAllUsers
 //        EntityModel<User> resource = EntityModel.of(user);
 //
 //        WebMvcLinkBuilder linkTo =
 //            linkTo(methodOn(this.getClass()).retrieveAllUsers());
 //
 //        resource.add(linkTo.withRel("all-users"));
-//
-//        //HATEOAS
-//
-//        return resource;
-//    }
+
+        //HATEOAS
+
+        return user;
+    }
 //
 //    @DeleteMapping("/users/{id}")
 //    public void deleteUser(@PathVariable int id) {
