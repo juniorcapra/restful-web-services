@@ -54,7 +54,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	</dependencies>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.10</version>
+    </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+  </dependencies>
 
 	<build>
 		<plugins>
