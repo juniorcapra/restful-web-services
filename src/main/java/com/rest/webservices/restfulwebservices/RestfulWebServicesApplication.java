@@ -22,12 +22,12 @@ public class RestfulWebServicesApplication {
 		return localeResolver;
 	}
 
-	@Bean
-	public ResourceBundleMessageSource bundleMessageSource(){
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasename("messages");
-		return messageSource;
-	}
+//	@Bean
+//	public ResourceBundleMessageSource bundleMessageSource(){
+//		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+//		messageSource.setBasename("messages");
+//		return messageSource;
+//	}
 
 
 }
