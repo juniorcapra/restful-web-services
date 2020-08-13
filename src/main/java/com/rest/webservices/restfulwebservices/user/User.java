@@ -1,11 +1,12 @@
 package com.rest.webservices.restfulwebservices.user;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-//@ApiModel(description="All details about the user.")
+@ApiModel(description="All details about the user.")
 //@Entity
 public class User {
 //    @Id
