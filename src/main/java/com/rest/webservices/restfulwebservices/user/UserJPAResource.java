@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,9 @@ public class UserJPAResource {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping("/jpa/users")
     public List<User> retrieveAllUsers() {
@@ -77,5 +81,26 @@ public class UserJPAResource {
             throw new UserNotFoundException("id-" +id);
 
         return userOptional.get().getPosts();
+    }
+
+
+    @PostMapping("/jpa/users/{id}/posts")
+    public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if(!userOptional.isPresent())
+            throw new UserNotFoundException("id-" +id);
+
+        User user = userOptional.get();
+        post.setUser(user);
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+            .buildAndExpand(post.getId())
+            .toUri();
+        postRepository.save(post);
+
+
+        return ResponseEntity.created(location).build();
     }
 }
